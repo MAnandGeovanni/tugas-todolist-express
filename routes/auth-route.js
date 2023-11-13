@@ -2,6 +2,7 @@ const express = require('express');
 const route = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/Users');
+const jwt = require('jsonwebtoken');
 
 route.post('/login', (req, res) => {
   let data = req.body
@@ -15,8 +16,10 @@ route.post('/login', (req, res) => {
     return
   }
   if (bcrypt.compareSync(data.password, user.password)){
+    const token = jwt.sign({email: data.email}, "ajsdijiashdsau")
    res.json ({
-     message: "kamu sudah masuk"
+     message: "kamu sudah masuk",
+     token
    })
    return
   }
