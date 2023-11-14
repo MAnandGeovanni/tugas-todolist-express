@@ -12,7 +12,7 @@ route.get('/', (req, res) => {
 });
 
 route.use('/auth', authRoutes);
-route.use('/users', userRoutes)
+route.use('/user', userRoutes)
 route.use('/todos', verifyToken, todoRoutes);
 
 module.exports = route;
