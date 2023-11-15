@@ -13,6 +13,6 @@ route.get('/', (req, res) => {
 
 route.use('/auth', authRoutes);
 route.use('/user', userRoutes)
-route.use('/todos', verifyToken, todoRoutes);
-
+route.use('/todos',  todoRoutes);
+verifyToken
 module.exports = route;

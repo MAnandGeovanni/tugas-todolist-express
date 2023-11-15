@@ -1,4 +1,5 @@
 const User = require ("../models/User")
+const bcrypt = require('bcrypt');
 
 module.exports = {
     getAllUser : (req, res) => {
@@ -11,6 +12,10 @@ module.exports = {
         let data = req.body
 
         try {
+            const hashPassword = bcrypt.hashSync(data.password, 10)
+            data.password = hashPassword
+
+
             await User.create(data)
 
             res.status(201).json({
